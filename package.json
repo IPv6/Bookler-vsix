@@ -1,0 +1,107 @@
+{
+  "name": "bookler",
+  "displayName": "Bookler",
+  "description": "Note-keeping tooset",
+  "publisher": "wplabs.com",
+  "version": "0.0.5",
+  "engines": {
+    "vscode": ">=1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./functions/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onNotebook:bookler-notebook"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "bookler.dropCache",
+        "title": "Bookler: Drop Caches"
+      }
+    ],
+    "notebooks": [
+      {
+        "id": "bookler-notebook",
+        "type": "bookler-notebook",
+        "displayName": "Bookler Notebook",
+        "selector": [
+          {
+            "filenamePattern": "*.bookler"
+          }
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "bookler",
+      "properties": {
+        "bookler.bookletRootFiles": {
+          "default": "_toc.tbd",
+          "type": "string",
+          "description": "File name. Booklet description file, marks booklet hierarchy root"
+        },
+        "bookler.collectFilesByName": {
+          "default": [
+            "**/*.tbd",
+            "**/*.md"
+          ],
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File globs. Files with bookler-handled content"
+        },
+        "bookler.ignoreFilesByName": {
+          "default": [
+            "**/node_modules/**",
+            "**/.git/**"
+          ],
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "File globs. Files that should be ignored (to speedup things)"
+        },
+        "bookler.ignoreFilesBySize": {
+          "default": 1000000,
+          "type": "number",
+          "description": "File size. Files with bigger size will be ignored too"
+        },
+        "bookler.contentTagPrefix": {
+          "default": [
+            "#",
+            "@"
+          ],
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of prefixes to treat words as tags"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@vscode/test-electron": "^2.2.0",
+    "esbuild": "^0.16.16",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0"
+  }
+}

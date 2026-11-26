@@ -1,0 +1,28 @@
+Examples of bookler-links usage
+
+* Tagged blocks by exact name: [[TEST_TAG]]
+* Tagged blocks by wildcard: [[TEST?_TAG]]
+* All tagged blocks in one editable list
+- [[?:TEST_TAG]]
+* All tagged blocks, not tagged by another tag
+- [[?:TEST_TAG, -@notcooltag]]
+* All tagged blocks, only is subset of files
+- [[?:TEST_TAG, file:note2*]]
+* All tagged blocks, sorted by tag context in defined order
+- [[?:TEST_TAG context:THISFIRST,context:THISSECOND]]
+* All tagged blocks, sorted by tag context && skip blocks with no context usage
+ [[?:TEST_TAG context:amust!]]
+ 
+* This block is tagged: @TEST3_TAG
+// block taggin first
+
+* Random stuff
+
+* This block is tagged: @TEST3_TAG
+// block taggin second
+
+* TEST3_TAG-Tagged blocks in all files
+// Peek: [[TEST3_TAG]]
+// List: [[?:TEST3_TAG]] [[?:TEST2_TAG]]
+
+* -TEST3_TAGTagged blocks in this file only: [[?:TEST3_TAG, file:this!]]

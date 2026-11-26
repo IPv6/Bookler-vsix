@@ -1,0 +1,10 @@
+.vscode/**
+.vscode-test/**
+test/**
+.yarnrc
+*.code-workspace
+*.vsix
+**/*.map
+**/jsconfig.json
+**/.eslintrc.json
+**/.gitignore
